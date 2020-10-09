@@ -1,0 +1,7 @@
+const planetActionTypes = {
+	GET_PLANETS_REQUEST: "GET_PLANETS_REQUEST",
+	GET_PLANETS_SUCCESS: "GET_PLANETS_SUCCESS",
+	GET_PLANETS_FAILURE: "GET_PLANETS_REQUEST",
+}
+
+export default planetActionTypes

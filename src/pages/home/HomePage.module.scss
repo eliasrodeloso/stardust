@@ -1,0 +1,16 @@
+@import "config/styles/_all";
+
+.wrapper {
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 90vw;
+	margin: 0 auto;
+	@include respond-below("sm") {
+		flex-direction: column;
+		width: 100%;
+		align-items: flex-start;
+		padding-top: 5vh;
+	}
+}
