@@ -1,0 +1,70 @@
+// Misc.
+$misc: (
+	z-index-base: 10000,
+);
+
+// Duration.
+$duration: (
+	transition: 0.2s,
+);
+
+// Size.
+$size: (
+	border-radius: 0.35em,
+	element-height: 2.125em,
+	element-margin: 2em,
+	container-width: 100%,
+);
+
+// Font.
+$font: (
+	family: (
+		"Proxima Nova",
+		Helvetica,
+		sans-serif,
+	),
+	family-fixed: (
+		"Courier New",
+		monospace,
+	),
+	weight: 400,
+	weight-bold: 400,
+);
+
+// Palette.
+$palette: (
+	bg: #1d1d1d,
+	fg: #747474,
+	fg-bold: #e3e3e3,
+	fg-light: #8e8e8e,
+	border: #efefef,
+	border-bg: #f7f7f7,
+	border2: #dfdfdf,
+	border2-bg: #e7e7e7,
+	accent1: (
+		bg: #ffe400,
+		fg: mix(#ffe400, #ffffff, 25%),
+		fg-bold: #ffffff,
+		fg-light: mix(#ffe400, #ffffff, 40%),
+		border: rgba(255, 255, 255, 0.25),
+		border-bg: rgba(255, 255, 255, 0.075),
+		border2: rgba(255, 255, 255, 0.5),
+		border2-bg: rgba(255, 255, 255, 0.2),
+	),
+	accent2: (
+		bg: #14a76c,
+		fg: rgba(255, 255, 255, 0.5),
+		fg-bold: #ffffff,
+		fg-light: rgba(255, 255, 255, 0.4),
+		border: rgba(255, 255, 255, 0.25),
+		border-bg: rgba(255, 255, 255, 0.075),
+		border2: rgba(255, 255, 255, 0.5),
+		border2-bg: rgba(255, 255, 255, 0.2),
+	),
+	tetradic: (
+		first: #f6df18,
+		second: #18f670,
+		third: #182ff6,
+		fourth: #f6189e,
+	),
+);

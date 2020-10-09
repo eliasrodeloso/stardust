@@ -1,0 +1,78 @@
+@import "config/styles/_all";
+
+.root {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	background: _palette(fg);
+	color: _palette(accent1, bg);
+	outline: 0;
+	padding: 0.75em;
+	text-decoration: none;
+}
+
+.wrapper {
+	margin-bottom: 1rem;
+	padding-bottom: 0.75rem;
+	width: 100%;
+	text-align: left;
+
+	&Errored {
+		padding-bottom: 0;
+	}
+}
+
+.focused {
+	&:after {
+		content: "";
+		position: absolute;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+		z-index: 999;
+		height: 2px;
+		background-position: 0% 0%;
+		background: linear-gradient(
+			to right,
+			_palette(tetradic, first),
+			_palette(tetradic, second),
+			_palette(tetradic, third),
+			_palette(tetradic, fourth),
+			_palette(tetradic, first),
+			_palette(tetradic, second)
+		);
+		background-size: 500% auto;
+		animation: gradient 3s linear infinite;
+	}
+}
+
+.element {
+	flex-grow: 1;
+	color: _palette(accent1, bg);
+	font-size: 1em;
+	line-height: 1.25em;
+	vertical-align: middle;
+	@include vendor("appearance", "none");
+	background: transparent;
+	border: 0;
+	padding: 0;
+	&:focus {
+		outline: none;
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 100% 0;
+	}
+}
+
+.error {
+	font-size: 0.75em;
+	color: _palette(tetradic, fourth);
+	padding: 0 0.75em;
+}

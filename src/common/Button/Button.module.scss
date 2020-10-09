@@ -1,0 +1,154 @@
+@import "config/styles/_all";
+
+.button {
+	@include vendor("appearance", "none");
+	@include vendor(
+		"transition",
+		(
+			"background-color #{_duration(transition)} ease-in-out",
+			"color #{_duration(transition)} ease-in-out",
+			"border-color #{_duration(transition)} ease-in-out"
+		)
+	);
+	background-color: transparent;
+	border-radius: _size(border-radius);
+	border: solid 3px _palette(border);
+	color: _palette(fg-bold);
+	cursor: pointer;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	text-transform: uppercase;
+	font-weight: bold;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	font-family: "Avenir", sans-serif;
+	font-size: 0.85em;
+
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -2;
+	}
+	&:before {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0%;
+		height: 100%;
+		background-color: darken(_palette(accent1, bg), 15%);
+		transition: all 0.3s;
+		z-index: -1;
+	}
+
+	&:hover {
+		border-color: inherit;
+		color: inherit;
+	}
+
+	&:active {
+		background-color: inherit;
+		border-color: inherit;
+		color: inherit;
+	}
+}
+
+.primary {
+	&:hover {
+		border-color: _palette(accent1, bg);
+		color: _palette(accent1, fg);
+		&:before {
+			width: 100%;
+		}
+	}
+
+	&:active {
+		background-color: transparentize(_palette(accent1, bg), 0.9);
+		border-color: _palette(accent1, bg);
+		color: _palette(accent1, fg);
+		&:before {
+			width: 100%;
+		}
+	}
+}
+
+.secondary {
+	&:hover {
+		border-color: _palette(accent2, bg);
+		color: _palette(accent2, bg);
+		&:before {
+			width: 100%;
+		}
+	}
+
+	&:active {
+		background-color: transparentize(_palette(accent2, bg), 0.9);
+		border-color: _palette(accent2, bg);
+		color: _palette(accent2, bg);
+		&:before {
+			width: 100%;
+		}
+	}
+}
+
+.link {
+	@include vendor(
+		"transition",
+		("color #{_duration(transition)} ease-in-out", "border-color #{_duration(transition)} ease-in-out")
+	);
+	border-bottom: dotted 1px;
+	color: _palette(accent1, bg);
+	text-decoration: none;
+
+	&:hover {
+		border-bottom-color: transparent;
+		color: _palette(accent1, bg);
+		text-decoration: none;
+	}
+}
+
+.small {
+	font-weight: _font(weight-medium);
+	height: 1.75em;
+	min-width: 11em;
+	padding: 0.75em 0.75em;
+}
+
+.medium {
+	font-weight: _font(weight-bold);
+	height: 2.25em;
+	min-width: 13em;
+	padding: 1.25em 1.25em;
+}
+
+.large {
+	font-weight: _font(weight-bold);
+	height: 2.75em;
+	min-width: 15em;
+	padding: 1.75em 1.75em;
+}
+
+.disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+
+	&:hover {
+		border-color: _palette(border);
+		color: _palette(fg-bold);
+	}
+
+	&:active {
+		background-color: transparent;
+		border-color: _palette(border);
+		color: _palette(fg-bold);
+	}
+}

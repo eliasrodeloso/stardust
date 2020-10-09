@@ -1,0 +1,271 @@
+// breakpoints.scss v1.0 | @ajlkn | MIT licensed */
+
+// Vars.
+
+/// Breakpoints.
+/// @var {list}
+$breakpoints: () !global;
+
+// Mixins.
+
+/// Sets breakpoints.
+/// @param {map} $x Breakpoints.
+@mixin breakpoints($x: ()) {
+	$breakpoints: $x !global;
+}
+
+/// Wraps @content in a @media block targeting a specific orientation.
+/// @param {string} $orientation Orientation.
+@mixin orientation($orientation) {
+	@media screen and (orientation: #{$orientation}) {
+		@content;
+	}
+}
+
+/// Wraps @content in a @media block using a given query.
+/// @param {string} $query Query.
+@mixin breakpoint($query: null) {
+	$breakpoint: null;
+	$op: null;
+	$media: null;
+
+	// Determine operator, breakpoint.
+
+	// Greater than or equal.
+	@if (str-slice($query, 0, 2) == ">=") {
+		$op: "gte";
+		$breakpoint: str-slice($query, 3);
+	}
+
+	// Less than or equal.
+	@else if (str-slice($query, 0, 2) == "<=") {
+		$op: "lte";
+		$breakpoint: str-slice($query, 3);
+	}
+
+	// Greater than.
+	@else if (str-slice($query, 0, 1) == ">") {
+		$op: "gt";
+		$breakpoint: str-slice($query, 2);
+	}
+
+	// Less than.
+	@else if (str-slice($query, 0, 1) == "<") {
+		$op: "lt";
+		$breakpoint: str-slice($query, 2);
+	}
+
+	// Not.
+	@else if (str-slice($query, 0, 1) == "!") {
+		$op: "not";
+		$breakpoint: str-slice($query, 2);
+	}
+
+	// Equal.
+	@else {
+		$op: "eq";
+		$breakpoint: $query;
+	}
+
+	// Build media.
+	@if ($breakpoint and map-has-key($breakpoints, $breakpoint)) {
+		$a: map-get($breakpoints, $breakpoint);
+
+		// Range.
+		@if (type-of($a) == "list") {
+			$x: nth($a, 1);
+			$y: nth($a, 2);
+
+			// Max only.
+			@if ($x == null) {
+				// Greater than or equal (>= 0 / anything)
+				@if ($op == "gte") {
+					$media: "screen";
+				}
+
+				// Less than or equal (<= y)
+				@else if ($op == "lte") {
+					$media: "screen and (max-width: " + $y + ")";
+				}
+
+				// Greater than (> y)
+				@else if ($op == "gt") {
+					$media: "screen and (min-width: " + ($y + 1) + ")";
+				}
+
+				// Less than (< 0 / invalid)
+				@else if ($op == "lt") {
+					$media: "screen and (max-width: -1px)";
+				}
+
+				// Not (> y)
+				@else if ($op == "not") {
+					$media: "screen and (min-width: " + ($y + 1) + ")";
+				}
+
+				// Equal (<= y)
+				@else {
+					$media: "screen and (max-width: " + $y + ")";
+				}
+			}
+
+			// Min only.
+			@else if ($y == null) {
+				// Greater than or equal (>= x)
+				@if ($op == "gte") {
+					$media: "screen and (min-width: " + $x + ")";
+				}
+
+				// Less than or equal (<= inf / anything)
+				@else if ($op == "lte") {
+					$media: "screen";
+				}
+
+				// Greater than (> inf / invalid)
+				@else if ($op == "gt") {
+					$media: "screen and (max-width: -1px)";
+				}
+
+				// Less than (< x)
+				@else if ($op == "lt") {
+					$media: "screen and (max-width: " + ($x - 1) + ")";
+				}
+
+				// Not (< x)
+				@else if ($op == "not") {
+					$media: "screen and (max-width: " + ($x - 1) + ")";
+				}
+
+				// Equal (>= x)
+				@else {
+					$media: "screen and (min-width: " + $x + ")";
+				}
+			}
+
+			// Min and max.
+			@else {
+				// Greater than or equal (>= x)
+				@if ($op == "gte") {
+					$media: "screen and (min-width: " + $x + ")";
+				}
+
+				// Less than or equal (<= y)
+				@else if ($op == "lte") {
+					$media: "screen and (max-width: " + $y + ")";
+				}
+
+				// Greater than (> y)
+				@else if ($op == "gt") {
+					$media: "screen and (min-width: " + ($y + 1) + ")";
+				}
+
+				// Less than (< x)
+				@else if ($op == "lt") {
+					$media: "screen and (max-width: " + ($x - 1) + ")";
+				}
+
+				// Not (< x and > y)
+				@else if ($op == "not") {
+					$media: "screen and (max-width: " + ($x - 1) + "), screen and (min-width: " + ($y + 1) + ")";
+				}
+
+				// Equal (>= x and <= y)
+				@else {
+					$media: "screen and (min-width: " + $x + ") and (max-width: " + $y + ")";
+				}
+			}
+		}
+
+		// String.
+		@else {
+			// Missing a media type? Prefix with "screen".
+			@if (str-slice($a, 0, 1) == "(") {
+				$media: "screen and " + $a;
+			}
+
+			// Otherwise, use as-is.
+			@else {
+				$media: $a;
+			}
+		}
+	}
+
+	// Output.
+	@media #{$media} {
+		@content;
+	}
+}
+
+/*
+ * Media Queries mixins for Bootstrap 3
+ * Definition of mixin than help us to control all breakpoints of bootstrap 3.
+ * This feature is already integrated with bootstrap 4 but not for v3 version.
+ * We defined 3 mixin:
+ *   respond-above: build the media query to include all breakpoints higher than the breakpoint that is passed trough parametter
+ *   respond-below: build the media query to include all breakpoints lower than the breakpoint that is passed trough parametter
+ *   respond-between: build the media query between two breakpoints that are passed trough parametters
+ */
+
+/** Breakpoints map */
+$breakpoints: (
+	xs: 480px,
+	sm: 600px,
+	md: 960px,
+	lg: 1280px,
+	xl: 1920px,
+);
+
+/** Respond above mixin */
+@mixin respond-above($breakpoint) {
+	// If the breakpoint exists in the map.
+	@if map-has-key($breakpoints, $breakpoint) {
+		// Get the breakpoint value.
+		$breakpoint-value: map-get($breakpoints, $breakpoint);
+		// Write the media query.
+		@media (min-width: $breakpoint-value) {
+			@content;
+		}
+		// If the breakpoint doesn't exist in the map.
+	} @else {
+		// Log a warning.
+		@warn 'Invalid breakpoint: #{$breakpoint}.';
+	}
+}
+
+/** Respond below mixin */
+@mixin respond-below($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		$breakpoint-value: map-get($breakpoints, $breakpoint);
+		@media (max-width: ($breakpoint-value - 1)) {
+			@content;
+		}
+	} @else {
+		@warn 'Invalid breakpoint: #{$breakpoint}.';
+	}
+}
+
+/** Respond between mixin */
+@mixin respond-between($lower, $upper) {
+	// If both the lower and upper breakpoints exist in the map.
+	@if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+		// Get the lower and upper breakpoints.
+		$lower-breakpoint: map-get($breakpoints, $lower);
+		$upper-breakpoint: map-get($breakpoints, $upper);
+		// Write the media query.
+		@media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+			@content;
+		}
+		// If one or both of the breakpoints don't exist.
+	} @else {
+		// If lower breakpoint is invalid.
+		@if (map-has-key($breakpoints, $lower) == false) {
+			// Log a warning.
+			@warn 'Your lower breakpoint was invalid: #{$lower}.';
+		}
+		// If upper breakpoint is invalid.
+		@if (map-has-key($breakpoints, $upper) == false) {
+			// Log a warning.
+			@warn 'Your upper breakpoint was invalid: #{$upper}.';
+		}
+	}
+}
