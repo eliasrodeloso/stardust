@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-export interface IPlanet {
+export default interface IPlanet {
 	/**
 	 * The diameter of this planet in kilometers.
 	 */
