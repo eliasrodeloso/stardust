@@ -12,7 +12,7 @@ NProgress.configure({
 })
 
 export default function LoadingBar() {
-	const isLoading = useSelector(loadingSelector(["SEND_EMAIL"]))
+	const isLoading = useSelector(loadingSelector(["GET_PLANETS", "GET_FILMS", "GET_PEOPLE"]))
 	if (isLoading) {
 		NProgress.start()
 	}
