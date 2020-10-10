@@ -1,0 +1,22 @@
+.planet {
+  .planetName {
+    font-size: 1.5rem;
+  }
+
+  .terrain, .climate, .population, .rotationPeriod {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 1rem;
+    text-transform: capitalize;
+
+    svg {
+      margin-right: 0.25rem;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25)
+}
