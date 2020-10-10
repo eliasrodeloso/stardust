@@ -1,0 +1,7 @@
+const filmActionTypes = {
+	GET_FILMS_REQUEST: "GET_FILMS_REQUEST",
+	GET_FILMS_SUCCESS: "GET_FILMS_SUCCESS",
+	GET_FILMS_FAILURE: "GET_FILMS_FAILURE",
+}
+
+export default filmActionTypes

@@ -1,6 +1,6 @@
 import planetActionTypes from "core/action-types/planets.actionTypes"
 import createReducer, { Action } from "core/factories/createReducer.factory"
-import { IPlanet } from "core/types/IPlanet"
+import IPlanet from "core/types/IPlanet"
 
 export interface IPlanetsStore {
 	searchResult: Array<IPlanet> | null
