@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from "react"
+import React, { useCallback, useEffect, useMemo, Fragment } from "react"
 import { Chip } from "@material-ui/core"
 import { AccountCircleOutlined, MovieOutlined } from "@material-ui/icons"
 
@@ -30,37 +30,47 @@ export default function PlanetRelatedItems(props: PlanetRelatedItemsProps) {
 
 	useEffect(
 		useCallback(() => {
-			actions.getPeople(residents, planetId)
-			actions.getFilms(films, planetId)
-		}, [actions, residents, planetId, films]),
+			if (!store.people && !store.films) {
+				actions.getPeople(residents, planetId)
+				actions.getFilms(films, planetId)
+			}
+		}, [actions, residents, planetId, films, store]),
 		[]
 	)
 
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.residentsWrapper}>
-				<h4 className={styles.title}>Known residents who live on this planet</h4>
-				{store.people?.map((item) => (
-					<Chip
-						key={item.url}
-						classes={{ root: styles.chip }}
-						icon={<AccountCircleOutlined />}
-						label={item.name}
-						variant="outlined"
-					/>
-				))}
+				{store.people && (
+					<Fragment>
+						<h4 className={styles.title}>Known residents who live on this planet</h4>
+						{store.people?.map((item) => (
+							<Chip
+								key={item.url}
+								classes={{ root: styles.chip }}
+								icon={<AccountCircleOutlined />}
+								label={item.name}
+								variant="outlined"
+							/>
+						))}
+					</Fragment>
+				)}
 			</div>
 			<div className={styles.filmsWrapper}>
-				<h4 className={styles.title}>Movies that were filmed on this planet</h4>
-				{store.films?.map((item) => (
-					<Chip
-						key={item.url}
-						classes={{ root: styles.chip }}
-						icon={<MovieOutlined />}
-						label={item.title}
-						variant="outlined"
-					/>
-				))}
+				{store.films && (
+					<Fragment>
+						<h4 className={styles.title}>Movies that were filmed on this planet</h4>
+						{store.films?.map((item) => (
+							<Chip
+								key={item.url}
+								classes={{ root: styles.chip }}
+								icon={<MovieOutlined />}
+								label={item.title}
+								variant="outlined"
+							/>
+						))}
+					</Fragment>
+				)}
 			</div>
 		</div>
 	)
