@@ -1,22 +1,16 @@
 .planet {
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+
   .planetName {
     font-size: 1.5rem;
   }
 
-  .terrain, .climate, .population, .rotationPeriod {
-    display: inline-flex;
-    align-items: center;
-    margin-right: 1rem;
-    text-transform: capitalize;
-
-    svg {
-      margin-right: 0.25rem;
-    }
-
-    &:last-of-type {
-      margin-right: 0;
-    }
+  .seeMore {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 100;
   }
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25)
 }
