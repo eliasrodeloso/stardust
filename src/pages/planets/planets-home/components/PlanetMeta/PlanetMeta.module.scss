@@ -1,3 +1,5 @@
+@import "config/styles/_all";
+
 .terrain, .climate, .population, .rotationPeriod {
   display: inline-flex;
   align-items: center;
@@ -10,5 +12,19 @@
 
   &:last-of-type {
     margin-right: 0;
+  }
+
+  @include respond-below("sm") {
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+  }
+}
+
+.planetMeta {
+  display: flex;
+  width: 90%;
+
+  @include respond-below("sm") {
+    flex-direction: column;
   }
 }

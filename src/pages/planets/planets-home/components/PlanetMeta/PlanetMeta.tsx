@@ -14,19 +14,19 @@ export default function PlanetMeta(props: any) {
 	const { item } = props
 	return (
 		<div className={styles.planetMeta}>
-			{item.terrain !== "unknonw" && (
+			{item.terrain !== "unknown" && (
 				<p className={styles.terrain} aria-label="Terrain of the planet" title="Terrain of the planet">
 					<TerrainIcon />
 					{item.terrain}
 				</p>
 			)}
-			{item.climate !== "unknonw" && (
+			{item.climate !== "unknown" && (
 				<p className={styles.climate} aria-label="Climate of the planet" title="Climate of the planet">
 					<ClimateIcon />
 					{item.climate}
 				</p>
 			)}
-			{item.population !== "unknonw" && (
+			{item.population !== "unknown" && (
 				<p
 					className={styles.population}
 					aria-label="Aproximate population of the planet"
@@ -36,7 +36,7 @@ export default function PlanetMeta(props: any) {
 					{numberFormatter(item.population, 1)}
 				</p>
 			)}
-			{item.rotation_period !== "unknonw" && (
+			{item.rotation_period !== "unknown" && (
 				<p
 					className={styles.rotationPeriod}
 					aria-label="Rotation period (aka. Day duration) of the planet"

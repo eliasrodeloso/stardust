@@ -1,0 +1,17 @@
+
+.residentsWrapper {
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.chip {
+  margin: 0 0.5rem 0.5rem 0;
+
+  &:last-of-type {
+    margin: 0
+  }
+}

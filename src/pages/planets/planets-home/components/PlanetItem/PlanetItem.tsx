@@ -42,7 +42,9 @@ export default function PlanetItem(props: any) {
 						</span>
 						<h3 className={styles.planetName}>{item.name}</h3>
 						<PlanetMeta item={item} />
-						{isMoreOpen && <PlanetRelatedItems planetId={item.url} residents={item.residents} films={item.films} />}
+						{isMoreOpen && (
+							<PlanetRelatedItems open={isMoreOpen} planetId={item.url} residents={item.residents} films={item.films} />
+						)}
 					</div>
 				}
 			/>

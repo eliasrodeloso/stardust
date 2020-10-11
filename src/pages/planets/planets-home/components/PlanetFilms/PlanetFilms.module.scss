@@ -1,0 +1,12 @@
+
+.filmsWrapper {
+  composes: residentsWrapper from "../PlanetPeople/PlanetPeople.module.scss";
+}
+
+.title {
+  composes: title from "../PlanetPeople/PlanetPeople.module.scss";
+}
+
+.chip {
+  composes: chip from "../PlanetPeople/PlanetPeople.module.scss";
+}
