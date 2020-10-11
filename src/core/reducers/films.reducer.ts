@@ -7,23 +7,23 @@ export interface IFilmsSearchResult {
 }
 
 export interface IFilmsStore {
-	searchResult: IFilmsSearchResult | null
+	searchResult: IFilmsSearchResult
 }
 
 const initialState = {
-	searchResult: null,
+	searchResult: {},
 }
 
-export function setFilms(state: IFilmsStore, { payload }: Action<IFilmsSearchResult>) {
+export function setFilms(state: IFilmsStore, { payload }: Action<{ identifier: string; data: Array<IFilm> }>) {
 	return {
 		...state,
 		searchResult: {
 			...state.searchResult,
-			...payload,
+			[payload.identifier]: payload.data,
 		},
 	}
 }
 
 export default createReducer(initialState, {
-	[filmActionTypes.GET_FILMS_SUCCESS]: setFilms,
+	[filmActionTypes.SCOPED_GET_FILMS_SUCCESS]: setFilms,
 })

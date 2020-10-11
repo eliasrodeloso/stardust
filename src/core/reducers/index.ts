@@ -4,11 +4,12 @@ import planetsReducer, { IPlanetsStore } from "core/reducers/planets.reducer"
 import peopleReducer, { IPeopleStore } from "core/reducers/people.reducer"
 import filmsReducer, { IFilmsStore } from "core/reducers/films.reducer"
 
-import loadingReducer from "./loading.reducer"
+import loadingReducer, { scopedLoadingReducer } from "./loading.reducer"
 import errorReducer from "./error.reducer"
 
 export interface IReduxState {
 	loadingStore: object
+	scopedLoadingStore: object
 	errorStore: object
 	planetsStore: IPlanetsStore
 	peopleStore: IPeopleStore
@@ -17,6 +18,7 @@ export interface IReduxState {
 
 const combinedReducers = combineReducers({
 	loadingStore: loadingReducer,
+	scopedLoadingStore: scopedLoadingReducer,
 	errorStore: errorReducer,
 	planetsStore: planetsReducer,
 	peopleStore: peopleReducer,

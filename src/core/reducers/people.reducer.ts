@@ -7,23 +7,23 @@ export interface IPeopleSearchResult {
 }
 
 export interface IPeopleStore {
-	searchResult: IPeopleSearchResult | null
+	searchResult: IPeopleSearchResult
 }
 
 const initialState = {
-	searchResult: null,
+	searchResult: {},
 }
 
-export function setPeople(state: IPeopleStore, { payload }: Action<IPeopleSearchResult>) {
+export function setPeople(state: IPeopleStore, { payload }: Action<{ identifier: string; data: Array<IPeople> }>) {
 	return {
 		...state,
 		searchResult: {
 			...state.searchResult,
-			...payload,
+			[payload.identifier]: payload.data,
 		},
 	}
 }
 
 export default createReducer(initialState, {
-	[peopleActionTypes.GET_PEOPLE_SUCCESS]: setPeople,
+	[peopleActionTypes.SCOPED_GET_PEOPLE_SUCCESS]: setPeople,
 })

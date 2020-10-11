@@ -7,23 +7,24 @@ import peopleActionTypes from "core/action-types/people.actionTypes"
 import getIdsFromUrls from "core/factories/getIdsFromUrl"
 
 function* getPeople(data: {
-	type: typeof peopleActionTypes.GET_PEOPLE_REQUEST
-	payload: { urls: Array<string>; planetId: string }
+	type: typeof peopleActionTypes.SCOPED_GET_PEOPLE_REQUEST
+	payload: { urls: Array<string>; identifier: string }
 }) {
+	const { urls, identifier } = data.payload
 	try {
-		const { urls, planetId } = data.payload
 		const ids = getIdsFromUrls(urls)
 		const responses = yield call(PeopleService.getPeople, ids)
 		yield put(
-			actionFactory(peopleActionTypes.GET_PEOPLE_SUCCESS, {
-				[planetId]: responses.map((response: AxiosResponse) => response.data),
+			actionFactory(peopleActionTypes.SCOPED_GET_PEOPLE_SUCCESS, {
+				identifier,
+				data: responses.map((response: AxiosResponse) => response.data),
 			})
 		)
 	} catch (error) {
-		yield put(actionFactory(peopleActionTypes.GET_PEOPLE_FAILURE, error))
+		yield put(actionFactory(peopleActionTypes.SCOPED_GET_PEOPLE_FAILURE, { identifier, error }))
 	}
 }
 
 export default function* watchGetPeople() {
-	yield takeLatest(peopleActionTypes.GET_PEOPLE_REQUEST, getPeople)
+	yield takeLatest(peopleActionTypes.SCOPED_GET_PEOPLE_REQUEST, getPeople)
 }

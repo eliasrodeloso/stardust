@@ -1,11 +1,11 @@
-import { compose, createStore, applyMiddleware, Store } from "redux"
+import { compose, createStore, applyMiddleware, AnyAction, Store } from "redux"
 import createSagaMiddleware from "redux-saga"
 
-import reducers from "core/reducers"
+import reducers, { IReduxState } from "core/reducers"
 import currentEnv from "config/constants/environment.constants"
 import rootSaga from "core/sagas/root.saga"
 
-let store: Store // eslint-disable-line
+let store: Store<IReduxState, AnyAction> // eslint-disable-line
 
 const sagaMiddleware = createSagaMiddleware()
 const createStoreWithMiddleware = compose(applyMiddleware(sagaMiddleware))(createStore)

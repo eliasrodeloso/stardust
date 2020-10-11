@@ -399,3 +399,18 @@ table {
 		box-shadow: _palette(accent1, bg) 1px 0 6px 1px;
 	}
 }
+
+.react-transition-enter, .react-transition-appear {
+  opacity: 0;
+}
+.react-transition-enter-active, .react-transition-appear-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.react-transition-exit {
+  opacity: 1;
+}
+.react-transition-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
