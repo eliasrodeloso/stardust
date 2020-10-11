@@ -1,5 +1,7 @@
 import axiosInstance from "config/axios.config"
 
+import films from "./films.json"
+
 export default class FilmService {
 	/**
 	 * Get a film on the database
@@ -8,7 +10,20 @@ export default class FilmService {
 	 * @returns {Promise} Promise of film
 	 */
 	static getFilmById(id: string | number) {
-		return axiosInstance.get(`/films/${id}`)
+		// return axiosInstance.get(`/films/${id}`)
+		return new Promise((resolve, reject) => {
+			const film = films.find((item) => String(item.pk) === String(id))
+			if (film) {
+				resolve({
+					data: {
+						url: `https://swapi.dev/api/films/${film.pk}/`,
+						...film.fields,
+					},
+				})
+			} else {
+				reject(new Error("Film not found"))
+			}
+		})
 	}
 
 	/**

@@ -1,5 +1,7 @@
 import axiosInstance from "config/axios.config"
 
+import people from "./people.json"
+
 export default class PeopleService {
 	/**
 	 * Get a person on the database
@@ -8,7 +10,20 @@ export default class PeopleService {
 	 * @returns {Promise} Promise of people
 	 */
 	static getPeopleById(id: string | number) {
-		return axiosInstance.get(`/people/${id}/`)
+		// return axiosInstance.get(`/people/${id}/`)
+		return new Promise((resolve, reject) => {
+			const resident = people.find((item) => String(item.pk) === String(id))
+			if (resident) {
+				resolve({
+					data: {
+						url: `https://swapi.dev/api/people/${resident.pk}/`,
+						...resident.fields,
+					},
+				})
+			} else {
+				reject(new Error("Resident not found"))
+			}
+		})
 	}
 
 	/**
