@@ -15,36 +15,36 @@ export default function PlanetMeta(props: any) {
 	return (
 		<div className={styles.planetMeta}>
 			{item.terrain !== "unknown" && (
-				<p className={styles.terrain} aria-label="Terrain of the planet" title="Terrain of the planet">
+				<div className={styles.terrain} aria-label="Terrain of the planet" title="Terrain of the planet">
 					<TerrainIcon />
-					{item.terrain}
-				</p>
+					<p className={styles.truncate}>{item.terrain}</p>
+				</div>
 			)}
 			{item.climate !== "unknown" && (
-				<p className={styles.climate} aria-label="Climate of the planet" title="Climate of the planet">
+				<div className={styles.climate} aria-label="Climate of the planet" title="Climate of the planet">
 					<ClimateIcon />
-					{item.climate}
-				</p>
+					<p className={styles.truncate}>{item.climate}</p>
+				</div>
 			)}
 			{item.population !== "unknown" && (
-				<p
+				<div
 					className={styles.population}
 					aria-label="Aproximate population of the planet"
 					title="Aproximate population of the planet"
 				>
 					<PeopleIcon />
-					{numberFormatter(item.population, 1)}
-				</p>
+					<p className={styles.truncate}>{numberFormatter(item.population, 1)}</p>
+				</div>
 			)}
 			{item.rotation_period !== "unknown" && (
-				<p
+				<div
 					className={styles.rotationPeriod}
 					aria-label="Rotation period (aka. Day duration) of the planet"
 					title="Rotation period (aka. Day duration) of the planet"
 				>
 					<DayDuration />
-					{item.rotation_period}
-				</p>
+					<p className={styles.truncate}>{item.rotation_period}</p>
+				</div>
 			)}
 		</div>
 	)

@@ -23,7 +23,7 @@ export default function PlanetItem(props: any) {
 	const [isMoreOpen, setIsMoreOpen] = useState(false)
 
 	return (
-		<ListItem alignItems="flex-start">
+		<ListItem classes={{ root: styles.root }} alignItems="flex-start">
 			<ListItemAvatar>
 				<Avatar>
 					<SvgIcon component={PlanetsIcon} viewBox="0 0 16 16" />

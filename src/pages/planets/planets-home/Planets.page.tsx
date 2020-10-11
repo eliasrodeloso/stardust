@@ -13,7 +13,6 @@ import styles from "./PlanetsPage.module.scss"
 interface IPlanetsHomeProps extends RouteComponentProps {}
 
 export default function CharactersHome(props: IPlanetsHomeProps) {
-	// eslint-disable-next-line
 	const store = usePlanetsStore()
 	const actions = usePlanetsSagas()
 	const { filters } = useFiltersContext()
@@ -27,9 +26,10 @@ export default function CharactersHome(props: IPlanetsHomeProps) {
 
 	useEffect(
 		useCallback(() => {
-			// eslint-disable-next-line
-			console.log(filters)
-		}, [filters]),
+			if (store.planets) {
+				actions.sort(filters)
+			}
+		}, [filters, actions, store]),
 		[filters.sort, filters.order]
 	)
 

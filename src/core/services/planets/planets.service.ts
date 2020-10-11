@@ -11,7 +11,10 @@ export default class PlanetsService {
 				url: `https://swapi.dev/api/planets/${item.pk}/`,
 				...item.fields,
 			}))
-			resolve({ data: { results: planetsMapped } })
+			const result = { data: { results: planetsMapped } }
+			// eslint-disable-next-line
+			console.log(result)
+			resolve(result)
 		})
 	}
 }

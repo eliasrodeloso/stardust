@@ -5,6 +5,8 @@
   align-items: center;
   margin-right: 1rem;
   text-transform: capitalize;
+  max-width: 12rem;
+  margin-bottom: 1rem;
 
   svg {
     margin-right: 0.25rem;
@@ -18,6 +20,13 @@
     margin-bottom: 0.5rem;
     margin-right: 0;
   }
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 
 .planetMeta {
