@@ -2,9 +2,11 @@ import React, { useCallback, useEffect } from "react"
 import { RouteComponentProps } from "@reach/router"
 import { List, Paper } from "@material-ui/core"
 
-import usePlanetsStore from "pages/planets/planets-home/usePlanetsStore.hook"
-import usePlanetsSagas from "pages/planets/planets-home/usePlanetsSagas.hook"
 import PlanetItem from "pages/planets/planets-home/components/PlanetItem/PlanetItem"
+import usePlanetsSagas from "pages/planets/planets-home/usePlanetsSagas.hook"
+import usePlanetsStore from "pages/planets/planets-home/usePlanetsStore.hook"
+import Sorter from "pages/planets/planets-home/components/Sorter/Sorter"
+import useFiltersContext from "core/hooks/useFiltersContext.hook"
 
 import styles from "./PlanetsPage.module.scss"
 
@@ -14,6 +16,7 @@ export default function CharactersHome(props: IPlanetsHomeProps) {
 	// eslint-disable-next-line
 	const store = usePlanetsStore()
 	const actions = usePlanetsSagas()
+	const { filters } = useFiltersContext()
 
 	useEffect(
 		useCallback(() => {
@@ -22,14 +25,27 @@ export default function CharactersHome(props: IPlanetsHomeProps) {
 		[]
 	)
 
+	useEffect(
+		useCallback(() => {
+			// eslint-disable-next-line
+			console.log(filters)
+		}, [filters]),
+		[filters.sort, filters.order]
+	)
+
 	return (
 		<Paper classes={{ root: styles.paper }} elevation={3}>
-			<h1 className={styles.planetsTitle}>Planets</h1>
-			<List>
-				{store.planets?.map((item) => (
-					<PlanetItem key={`${item.name}${item.url}`} item={item} />
-				))}
-			</List>
+			<header className={styles.header}>
+				<h1 className={styles.planetsTitle}>Planets</h1>
+				<Sorter />
+			</header>
+			<main>
+				<List>
+					{store.planets?.map((item) => (
+						<PlanetItem key={`${item.name}${item.url}`} item={item} />
+					))}
+				</List>
+			</main>
 		</Paper>
 	)
 }
