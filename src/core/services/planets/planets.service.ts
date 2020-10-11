@@ -12,8 +12,6 @@ export default class PlanetsService {
 				...item.fields,
 			}))
 			const result = { data: { results: planetsMapped } }
-			// eslint-disable-next-line
-			console.log(result)
 			resolve(result)
 		})
 	}
