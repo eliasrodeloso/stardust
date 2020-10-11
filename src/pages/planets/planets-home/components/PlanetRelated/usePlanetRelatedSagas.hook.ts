@@ -8,8 +8,8 @@ export default function usePlanetRelatedSagas() {
 	const dispatch = useDispatch()
 	return {
 		getPeople: (urls: Array<string>, planetId: string) =>
-			dispatch(actionFactory(peopleActionTypes.GET_PEOPLE_REQUEST, { planetId, urls })),
+			dispatch(actionFactory(peopleActionTypes.SCOPED_GET_PEOPLE_REQUEST, { identifier: planetId, urls })),
 		getFilms: (urls: Array<string>, planetId: string) =>
-			dispatch(actionFactory(filmActionTypes.GET_FILMS_REQUEST, { planetId, urls })),
+			dispatch(actionFactory(filmActionTypes.SCOPED_GET_FILMS_REQUEST, { identifier: planetId, urls })),
 	}
 }
