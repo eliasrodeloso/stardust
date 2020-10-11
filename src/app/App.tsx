@@ -9,6 +9,7 @@ import LoadingBar from "common/LoadingBar/LoadingBar"
 import Router from "config/Routes.config"
 import theme from "config/styles/theme"
 import FeedbackMessages from "common/FeedbackMessages/FeedbackMessage"
+import FiltersContextProvider from "core/context/Filters.context"
 
 export default function App() {
 	return (
@@ -22,7 +23,9 @@ export default function App() {
 					</Helmet>
 					<LoadingBar />
 					<FeedbackMessages />
-					<Router />
+					<FiltersContextProvider>
+						<Router />
+					</FiltersContextProvider>
 				</ThemeProvider>
 			</ReduxProvider>
 		</HelmetProvider>
