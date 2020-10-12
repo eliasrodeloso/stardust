@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/stardust/static/css/main.d24d291b.chunk.css",
+    "main.js": "/stardust/static/js/main.6a824f56.chunk.js",
+    "main.js.map": "/stardust/static/js/main.6a824f56.chunk.js.map",
+    "runtime-main.js": "/stardust/static/js/runtime-main.f963a350.js",
+    "runtime-main.js.map": "/stardust/static/js/runtime-main.f963a350.js.map",
+    "static/js/2.d42acaf6.chunk.js": "/stardust/static/js/2.d42acaf6.chunk.js",
+    "static/js/2.d42acaf6.chunk.js.map": "/stardust/static/js/2.d42acaf6.chunk.js.map",
+    "index.html": "/stardust/index.html",
+    "precache-manifest.1cc554c3662f2370588e9c893c9a3a0b.js": "/stardust/precache-manifest.1cc554c3662f2370588e9c893c9a3a0b.js",
+    "service-worker.js": "/stardust/service-worker.js",
+    "static/css/main.d24d291b.chunk.css.map": "/stardust/static/css/main.d24d291b.chunk.css.map",
+    "static/js/2.d42acaf6.chunk.js.LICENSE.txt": "/stardust/static/js/2.d42acaf6.chunk.js.LICENSE.txt",
+    "static/media/styles.config.scss": "/stardust/static/media/FiraCode-Regular.f08fdb39.ttf",
+    "static/media/planets.542b7217.svg": "/stardust/static/media/planets.542b7217.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f963a350.js",
+    "static/js/2.d42acaf6.chunk.js",
+    "static/css/main.d24d291b.chunk.css",
+    "static/js/main.6a824f56.chunk.js"
+  ]
+}
