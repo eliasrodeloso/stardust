@@ -2,10 +2,12 @@ const envConstants = {
 	development: {
 		NODE_ENV: process.env.NODE_ENV,
 		API_URL: "https://swapi.dev/api",
+		BASEPATH: "/stardust",
 	},
 	production: {
 		NODE_ENV: process.env.NODE_ENV,
 		API_URL: "https://swapi.dev/api",
+		BASEPATH: "/stardust",
 	},
 }
 

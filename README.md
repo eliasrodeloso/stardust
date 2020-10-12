@@ -1,6 +1,6 @@
 # Stardust
 
-Based on the Star Wars API, it uses the Planet resource and show the information related to the planet, you can view it live [here](https://stardust.eliasrodeloso.dev/)
+Based on the Star Wars API, it uses the Planet resource and show the information related to the planet, you can view it live [here](https://eliasrodeloso.github.io/stardust/)
 
 ## Notes
 
